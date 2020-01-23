@@ -11,6 +11,18 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::middleware(['auth'])->prefix('user')->group(base_path('routes/web/user_routes.php'));
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(base_path('routes/web/admin_routes.php'));
+
+Route::get('/home', 'HomeController@index')->name('home');
