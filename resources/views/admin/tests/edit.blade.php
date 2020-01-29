@@ -36,6 +36,7 @@
         </form>
     </div>
 @endsection
+@section('scripts')
 <script>
 window.addEventListener('DOMContentLoaded', function(){
     $('.ui.dropdown')
@@ -52,3 +53,4 @@ window.addEventListener('DOMContentLoaded', function(){
     ;
 });
 </script>
+@endsection

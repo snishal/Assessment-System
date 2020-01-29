@@ -8,29 +8,23 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/semantic.min.js') }}" defer></script>
-    <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ asset('js/user.js') }}" defer></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
     <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Laravel') }} | @yield('title', 'Admin')</title>
+    <title>{{ config('app.name', 'Laravel') }} | @yield('title', 'Dashboard')</title>
 </head>
 <body>
 
     <div class="ui secondary huge pointing menu">
-        <a class="item {{ Request::is('admin') ? 'active' : '' }}" href="/admin">
+        <a class="item {{ Request::is('user') ? 'active' : '' }}" href="/user">
             Home
         </a>
-        <a class="item {{ Request::is('admin/tests*') ? 'active' : '' }}" href="/admin/tests">
-            Tests
-        </a>
-        <a class="item {{ Request::is('admin/mcqs*') ? 'active' : '' }}" href="/admin/mcqs">
-            MCQs'
-        </a>
         <div class="right menu">
-            <a class="ui item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <a class="ui item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

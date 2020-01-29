@@ -13,7 +13,10 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/admin.js', 'public/js')
+   .js('resources/js/user.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
+   .sass('resources/sass/admin.scss', 'public/css')
+   .sass('resources/sass/user.scss', 'public/css')
    .copy('node_modules/semantic-ui-css/semantic.min.css','public/css/semantic.min.css')
    .copy('node_modules/semantic-ui-css/semantic.min.js','public/js/semantic.min.js')
    .copy('node_modules/semantic-ui-css/themes','public/css/themes');

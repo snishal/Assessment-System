@@ -43,6 +43,7 @@
     </div>
 @endsection
 
+@section('scripts')
 <script>
 window.addEventListener('DOMContentLoaded', function(){
     $('.ui.checkbox')
@@ -71,3 +72,4 @@ window.addEventListener('DOMContentLoaded', function(){
     ;
 });
 </script>
+@endsection

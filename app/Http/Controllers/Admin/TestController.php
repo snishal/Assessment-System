@@ -81,20 +81,28 @@ class TestController extends Controller
      */
     public function update(Request $request, Test $test)
     {
+        if($request->ajax()){
+            $test['active'] = $request->filled('active') ? $request['active'] : $test['active'];
+            $test->save();
+
+            return "true";
+        }
+
         $test['title'] = $request->filled('title') ? $request['title'] : $test['title'];
         $test['duration'] = $request->filled('duration') ? $request['duration'] : $test['duration'];
         $test['mcqWeight'] = $request->filled('mcqWeight') ? $request['mcqWeight'] : $test['mcqWeight'];
         $test['codingWeight'] = $request->filled('codingWeight') ? $request['codingWeight'] : $test['codingWeight'];
-        $test['active'] = $request->filled('active') ? $request['active'] : $test['active'];
-
-        $test->save();
 
         if($request->filled('mcqs')){
             $test->mcqs()->attach(array_diff($request['mcqs'], $test->mcqs->pluck('id')->toArray()));
             $test->mcqs()->detach(array_diff($test->mcqs->pluck('id')->toArray(), $request['mcqs']));
+        }else{
+            $test->mcqs()->detach();
         }
 
-        return $request->ajax() ? "true" : redirect('/admin/tests');
+        $test->save();
+
+        return redirect('/admin/tests');
     }
 
     /**
