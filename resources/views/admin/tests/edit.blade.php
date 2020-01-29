@@ -1,7 +1,7 @@
 @extends('admin.partials.layout')
 
-@section('main')
-    <div class="container">
+@section('content')
+    <div class="ui container">
         <form method="POST" action="/admin/tests/{{ $test->id }}" class="ui form">
             @method('PUT')
             @csrf

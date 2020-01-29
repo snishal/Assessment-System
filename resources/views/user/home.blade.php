@@ -1,6 +1,6 @@
 @extends('user.partials.layout')
 
-@section('main')
+@section('content')
 <div class="ui container three column grid cards">
     @foreach ($tests as $test)
         <div class="card">
@@ -14,9 +14,12 @@
                 </div>
             </div>
             <div class="extra content">
-                <button class="ui right floated positive takeTest button" aria-label="Take Test">
+                <button class="ui right floated positive takeTest button" aria-label="Take Test" data-test-id={{ $test->id }}>
                   Take Test
                 </button>
+                <form id="begin-test-form-{{ $test->id }}" method="POST" action="/user/take_test/{{ $test->id }}" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     @endforeach
@@ -43,7 +46,7 @@
       <div class="ui black deny button">
         Nope
       </div>
-      <div class="ui positive right labeled icon button">
+      <div class="ui positive right labeled icon beginTest button">
         Yes
         <i class="checkmark icon"></i>
       </div>
@@ -57,14 +60,21 @@ window.addEventListener('DOMContentLoaded', function(){
     $('.ui.modal')
         .modal({
             blurring: true,
-            onApprove : function() {
-                window.alert('Approved!');
-            }
+            onApprove: function($element) {
+                document.getElementById('begin-test-form-' + $element.data('testId')).submit();
+            },
         })
         .modal('setting', 'closable', false)
         .modal('setting', 'transition', 'vertical flip')
-        .modal('attach events', '.takeTest.button', 'show')
     ;
+
+    $('.takeTest.button').on('click', function(event){
+        $('.ui.modal')
+            .modal('show')
+        ;
+        $('.ui.modal').find('.beginTest.button').data('testId', $(this).data('testId'));
+    });
+
 });
 </script>
 @endsection

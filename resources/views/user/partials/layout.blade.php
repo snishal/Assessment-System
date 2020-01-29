@@ -20,20 +20,25 @@
 <body>
 
     <div class="ui secondary huge pointing menu">
-        <a class="item {{ Request::is('user') ? 'active' : '' }}" href="/user">
-            Home
-        </a>
-        <div class="right menu">
-            <a class="ui item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+        <div class="ui container">
+            <div class="item header">
+                {{ config('app.name', 'Laravel')}}
+            </div>
+            <a class="item {{ Request::is('user') ? 'active' : '' }}" href="/user">
+                Home
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+            <div class="right menu">
+                <a class="ui item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </div>
     </div>
 
-    @yield('main')
+    @yield('content')
 
 </body>
 @yield('scripts')

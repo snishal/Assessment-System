@@ -15,4 +15,8 @@ class Test extends Model
         return $this->belongsToMany('App\MultipleChoiceQuestion', 'multiple_choice_question_test', 'test_id', 'mcq_id')
                     ->withTimestamps();
     }
+
+    public function responses(){
+        return $this->belongsToMany('App\User')->using('App\TestResponse');
+    }
 }

@@ -1,7 +1,7 @@
 @extends('admin.partials.layout')
 
-@section('main')
-    <div class="container">
+@section('content')
+    <div class="ui container">
         <form method="POST" action="/admin/mcqs" class="ui form">
             @csrf
             <h1 class="ui header">Create Question</h1>

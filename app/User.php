@@ -39,4 +39,8 @@ class User extends Authenticatable
     public function verifyAdmin(){
         return $this->isAdmin;
     }
+
+    public function testsTaken(){
+        return $this->belongsToMany('App\Test')->using('App\TestResponse');
+    }
 }

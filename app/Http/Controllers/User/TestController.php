@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Test;
+use App\TestResponse;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -13,6 +14,17 @@ class TestController extends Controller
 
         return view('user.home', [
             'tests' => $activeTests,
+        ]);
+    }
+
+    public function takeTest(Test $test){
+        // TestResponse::create([
+        //     'test_id' => $test->id,
+        //     'user_id' => auth()->user()->id,
+        //     'start_time' => now(),
+        // ]);
+        return view('user.test', [
+            'test' => $test,
         ]);
     }
 }

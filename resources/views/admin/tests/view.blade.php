@@ -1,6 +1,6 @@
 @extends('admin.partials.layout')
 
-@section('main')
+@section('content')
     <a class="ui right floated positive button" href="/admin/tests/create">
         Create
     </a>

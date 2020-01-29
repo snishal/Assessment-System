@@ -18,8 +18,8 @@ class CreateTestResponsesTable extends Migration
             $table->unsignedBigInteger('test_id');
             $table->unsignedBigInteger('user_id');
             $table->time('start_time');
-            $table->time('end_time');
-            $table->integer('score');
+            $table->time('end_time')->nullable();
+            $table->integer('score')->nullable();
             $table->timestamps();
 
             $table->foreign('test_id')
