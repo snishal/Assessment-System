@@ -24,8 +24,14 @@
                 <input type="time" name="duration" required>
             </div>
             <div class="field remote choices">
-                <label>Questions</label>
-                <select multiple="" name="mcqs[]" class="ui fluid normal dropdown">
+                <label>Multiple Choice Questions</label>
+                <select multiple="" name="mcqs[]" class="ui fluid normal dropdown mcqs">
+                    <option value="">Questions</option>
+                </select>
+            </div>
+            <div class="field remote choices">
+                <label>Coding Questions</label>
+                <select multiple="" name="cqs[]" class="ui fluid normal dropdown cqs">
                     <option value="">Questions</option>
                 </select>
             </div>
@@ -37,10 +43,17 @@
 @endsection
 <script>
 window.addEventListener('DOMContentLoaded', function(){
-    $('.ui.dropdown')
+    $('.ui.dropdown.mcqs')
         .dropdown({
             apiSettings: {
                 action: 'get mcqs'
+            },
+        })
+    ;
+    $('.ui.dropdown.cqs')
+        .dropdown({
+            apiSettings: {
+                action: 'get cqs'
             },
         })
     ;

@@ -45,6 +45,10 @@ class TestController extends Controller
             $test->mcqs()->attach($request['mcqs']);
         }
 
+        if($request->filled('cqs')){
+            $test->cqs()->attach($request['cqs']);
+        }
+
         return redirect('/admin/tests');
     }
 
@@ -100,6 +104,13 @@ class TestController extends Controller
             $test->mcqs()->detach();
         }
 
+        if($request->filled('cqs')){
+            $test->cqs()->attach(array_diff($request['cqs'], $test->cqs->pluck('id')->toArray()));
+            $test->cqs()->detach(array_diff($test->cqs->pluck('id')->toArray(), $request['cqs']));
+        }else{
+            $test->cqs()->detach();
+        }
+
         $test->save();
 
         return redirect('/admin/tests');
@@ -114,6 +125,7 @@ class TestController extends Controller
     public function destroy(Test $test)
     {
         $test->delete();
+
 
         return redirect('/admin/tests');
     }

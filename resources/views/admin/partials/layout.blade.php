@@ -32,6 +32,9 @@
             <a class="item {{ Request::is('admin/mcqs*') ? 'active' : '' }}" href="/admin/mcqs">
                 MCQs'
             </a>
+            <a class="item {{ Request::is('admin/cqs*') ? 'active' : '' }}" href="/admin/cqs">
+                Coding Questions
+            </a>
             <div class="right menu">
                 <a class="ui item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">

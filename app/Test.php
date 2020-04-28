@@ -16,7 +16,15 @@ class Test extends Model
                     ->withTimestamps();
     }
 
+    public function cqs(){
+        return $this->belongsToMany('App\CodingQuestion', 'coding_question_test', 'test_id', 'cq_id')
+                    ->withTimestamps();
+    }
+
     public function responses(){
-        return $this->belongsToMany('App\User')->using('App\TestResponse');
+        return $this->belongsToMany('App\User', 'test_responses', 'test_id', 'user_id')
+                    ->using('App\TestResponse')
+                    ->with(['start_time', 'end_time', 'score'])
+                    ->withTimestamps();
     }
 }

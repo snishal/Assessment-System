@@ -26,7 +26,13 @@
             </div>
             <div class="field remote choices">
                 <label>Questions</label>
-                <select multiple="" name="mcqs[]" class="ui fluid normal dropdown">
+                <select multiple="" name="mcqs[]" class="ui fluid normal dropdown mcqs">
+                    <option value="">Questions</option>
+                </select>
+            </div>
+            <div class="field remote choices">
+                <label>Questions</label>
+                <select multiple="" name="cqs[]" class="ui fluid normal dropdown cqs">
                     <option value="">Questions</option>
                 </select>
             </div>
@@ -39,17 +45,33 @@
 @section('scripts')
 <script>
 window.addEventListener('DOMContentLoaded', function(){
-    $('.ui.dropdown')
+    $('.ui.dropdown.mcqs')
         .dropdown({
             apiSettings: {
-                action: 'get mcqs'
+                action: 'get mcqs',
+                onResponse : function(response) {
+                    console.log("here")
+                },
             },
         })
         .dropdown('toggle')
         @foreach ($test->mcqs->pluck('id') as $item)
         .dropdown('set selected', '{{ $item }}')
         @endforeach
-        // .dropdown('set selected', {{ $test->mcqs->pluck('id') }})
+    ;
+    $('.ui.dropdown.cqs')
+        .dropdown({
+            apiSettings: {
+                action: 'get cqs',
+                onResponse : function(response) {
+                    console.log("here")
+                },
+            },
+        })
+        .dropdown('toggle')
+        @foreach ($test->cqs->pluck('id') as $item)
+        .dropdown('set selected', '{{ $item }}')
+        @endforeach
     ;
 });
 </script>

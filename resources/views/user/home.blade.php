@@ -8,9 +8,11 @@
                 <div class="header">{{ $test->title }}</div>
                 <div class="meta">{{ $test->duration }}</div>
                 <div class="description">
+                    {{ $test->cqs_count }} Coding Questions
+                    <br/>
                     {{ $test->mcqs_count }} MCQs'
                     <br/>
-                    Max Marks : {{ $test->mcqs_count*$test->mcqWeight }}
+                    Max Marks : {{ $test->mcqs_count*$test->mcqWeight + $test->cqs_count*$test->codingWeight }}
                 </div>
             </div>
             <div class="extra content">
@@ -25,6 +27,27 @@
     @endforeach
 </div>
 
+<h1 class="ui header">First header</h1>
+<div class="ui container">
+    <table class="ui striped table">
+        <thead>
+            <tr>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($testResponses as $response)
+                <tr>
+                    <td>{{ $response->start_time }}</td>
+                    <td>{{ $response->end_time }}</td>
+                    <td>{{ $response->score }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 {{-- Modal --}}
 <div class="ui modal">
     <i class="close icon"></i>

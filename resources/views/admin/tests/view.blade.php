@@ -22,6 +22,12 @@
                     <div class="header">{{ $test->title }}</div>
                     <div class="meta">{{ $test->duration }}</div>
                     <div class="description">
+                        Coding Questions
+                        <ul class="ui list">
+                            @foreach ($test->cqs as $cq)
+                                <li>{{ $cq->name }}</li>
+                            @endforeach
+                        </ul>
                         MCQs'
                         <ul class="ui list">
                             @foreach ($test->mcqs as $mcq)
